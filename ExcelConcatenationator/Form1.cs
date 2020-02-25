@@ -52,6 +52,8 @@ namespace ExcelConcatenationator
             }
 
             WriteToStream(excelList);
+
+            SuccessMessage();
         }
 
         private void btn_ToStringOverride_Click(object sender, EventArgs e)
@@ -70,6 +72,8 @@ namespace ExcelConcatenationator
             }
 
             WriteToStreamWithOverride(GetAllExcelData(excelList));
+
+            SuccessMessage();
         }
         private void btn_CsvHelper_Click(object sender, EventArgs e)
         {
@@ -87,6 +91,8 @@ namespace ExcelConcatenationator
             }
 
             UseCsvHelper(GetAllExcelData(excelList));
+
+            SuccessMessage();
         }
 
         #endregion
@@ -181,8 +187,19 @@ namespace ExcelConcatenationator
             using(var writer = new StreamWriter(txt_Destination.Text))
             using(var csvWrtr = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
+                foreach (string header in TestExcelData.GetPropertyDisplayNames())
+                {
+                    csvWrtr.WriteField(header);
+                }
+                csvWrtr.NextRecord();
+                csvWrtr.Configuration.HasHeaderRecord = false;
                 csvWrtr.WriteRecords(data);
             }
+        }
+
+        private void SuccessMessage()
+        {
+            MessageBox.Show("Excel documents concatenated successfully.");
         }
     }
 }
