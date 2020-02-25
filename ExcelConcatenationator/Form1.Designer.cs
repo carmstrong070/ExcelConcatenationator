@@ -129,6 +129,7 @@
             this.btn_CsvHelper.TabIndex = 9;
             this.btn_CsvHelper.Text = "Csv Helper";
             this.btn_CsvHelper.UseVisualStyleBackColor = true;
+            this.btn_CsvHelper.Click += new System.EventHandler(this.btn_CsvHelper_Click);
             // 
             // btn_OpenXML
             // 

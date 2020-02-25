@@ -76,7 +76,5 @@ namespace ExcelConcatenationator
 
             return displayNames.ToArray();
         }
-
-
     }
 }

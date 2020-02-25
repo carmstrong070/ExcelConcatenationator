@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ExcelDataReader;
+using CsvHelper;
+using System.Globalization;
 
 namespace ExcelConcatenationator
 {
@@ -37,6 +39,11 @@ namespace ExcelConcatenationator
 
         private void btn_StreamWrite_Click(object sender, EventArgs e)
         {
+            if (IsPathValid(txt_Destination.Text.Substring(0, txt_Destination.Text.LastIndexOf("\\"))))
+                listBox_Paths.Items.Add(txt_Destination.Text);
+            else
+                MessageBox.Show("Invalid destination path");
+
             List<string> excelList = new List<string>();
 
             foreach (var item in listBox_Paths.Items)
@@ -49,6 +56,12 @@ namespace ExcelConcatenationator
 
         private void btn_ToStringOverride_Click(object sender, EventArgs e)
         {
+            if (!IsPathValid(txt_Destination.Text.Substring(0, txt_Destination.Text.LastIndexOf("\\") + 1)))
+            {
+                MessageBox.Show("Invalid destination path");
+                return;
+            }
+
             List<string> excelList = new List<string>();
 
             foreach (var item in listBox_Paths.Items)
@@ -58,8 +71,25 @@ namespace ExcelConcatenationator
 
             WriteToStreamWithOverride(GetAllExcelData(excelList));
         }
+        private void btn_CsvHelper_Click(object sender, EventArgs e)
+        {
+            if (!IsPathValid(txt_Destination.Text.Substring(0, txt_Destination.Text.LastIndexOf("\\"))))
+            {
+                MessageBox.Show("Invalid destination path");
+                return;
+            }
 
-#endregion
+            List<string> excelList = new List<string>();
+
+            foreach (var item in listBox_Paths.Items)
+            {
+                excelList.AddRange(GetExcelPaths(item.ToString()));
+            }
+
+            UseCsvHelper(GetAllExcelData(excelList));
+        }
+
+        #endregion
 
         private List<string> GetExcelPaths(string path)
         {
@@ -144,8 +174,15 @@ namespace ExcelConcatenationator
 
                 }
             }
+        }
 
-
+        private void UseCsvHelper(List<TestExcelData> data)
+        {
+            using(var writer = new StreamWriter(txt_Destination.Text))
+            using(var csvWrtr = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csvWrtr.WriteRecords(data);
+            }
         }
     }
 }
