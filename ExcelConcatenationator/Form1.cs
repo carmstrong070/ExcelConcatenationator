@@ -97,11 +97,20 @@ namespace ExcelConcatenationator
 
         #endregion
 
+        /// <summary>
+        /// Gets all documents in a folder that match the Search Pattern
+        /// </summary>
+        /// <param name="path">Path to search in</param>
+        /// <returns></returns>
         private List<string> GetExcelPaths(string path)
         {
             return Directory.GetFiles(path, SEARCH_PATTERN).ToList<string>();
         }
 
+        /// <summary>
+        /// Concatenates all rows of provided excel documents and writes them to a csv
+        /// </summary>
+        /// <param name="paths">List of paths to excel documents</param>
         private void WriteToStream(List<string> paths)
         {
             var csv = new StringBuilder();
@@ -111,13 +120,14 @@ namespace ExcelConcatenationator
                 {
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
+                        //-- If it's the first excel sheet, take the header rows. Otherwise, skip
                         if (paths.IndexOf(path) == 0)
                         {
                             reader.Read();
                             csv.AppendFormat("{0},{1},{2},{3},{4},{5},{6},{7}\r\n", "File Name", "Created Date", "Last Save Date", reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
                         }
                         else
-                            reader.Read();
+                            reader.NextResult();
 
                         while (reader.Read())
                         {
@@ -127,7 +137,7 @@ namespace ExcelConcatenationator
                 }
 
             }
-
+            
             using (var fileStream = new FileStream(txt_Destination.Text, FileMode.Append))
             {
                 using (var strmWrtr = new StreamWriter(fileStream))
@@ -142,6 +152,11 @@ namespace ExcelConcatenationator
             return Directory.Exists(path);
         }
 
+        /// <summary>
+        /// Gets all rows of excel documents given a list of paths
+        /// </summary>
+        /// <param name="paths">List of paths to excel documents</param>
+        /// <returns>List of TestExcelData</returns>
         private List<TestExcelData> GetAllExcelData(List<string> paths)
         {
             List<TestExcelData> data = new List<TestExcelData>();
@@ -152,8 +167,9 @@ namespace ExcelConcatenationator
                 {
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
-                        reader.Read(); //-- Skip the header row
+                        reader.NextResult(); //-- Skip the header row
 
+                        //-- Add each row to List as a new object
                         while (reader.Read())
                         {
                             data.Add(new TestExcelData(path.Substring(path.LastIndexOf("\\") + 1), File.GetCreationTime(path), File.GetLastWriteTime(path), reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4)));
@@ -165,6 +181,10 @@ namespace ExcelConcatenationator
             return data;
         }
 
+        /// <summary>
+        /// Uses overridden .ToString() for TestExcelData to write a list of objects to a csv
+        /// </summary>
+        /// <param name="data"></param>
         private void WriteToStreamWithOverride(List<TestExcelData> data)
         {
             using (var fileStream = new FileStream(txt_Destination.Text, FileMode.Append))
@@ -182,11 +202,17 @@ namespace ExcelConcatenationator
             }
         }
 
+
+        /// <summary>
+        /// Uses CsvHelper to write a list of objects to a csv
+        /// </summary>
+        /// <param name="data"></param>
         private void UseCsvHelper(List<TestExcelData> data)
         {
             using(var writer = new StreamWriter(txt_Destination.Text))
             using(var csvWrtr = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
+                //-- Write headers for csv file
                 foreach (string header in TestExcelData.GetPropertyDisplayNames())
                 {
                     csvWrtr.WriteField(header);
