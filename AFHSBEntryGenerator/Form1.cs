@@ -21,6 +21,13 @@ namespace AFHSBEntryGenerator
 
         private void btn_Generate_Click(object sender, EventArgs e)
         {
+            var rows = GetRows();
+
+
+        }
+
+        public List<AFHSBEntry> GetRows()
+        {
             var data = new List<AFHSBEntry>();
 
             string path = txt_Path.Text;
@@ -33,9 +40,28 @@ namespace AFHSBEntryGenerator
 
                     while (reader.Read())
                     {
-                        data.Add(new AFHSBEntry(path.Substring(path.LastIndexOf("\\") + 1), File.GetCreationTime(path), File.GetLastWriteTime(path), reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4)));
+                        AFHSBEntry entry = new AFHSBEntry();
+
+                        entry.AFHSBCrossTabFieldName = reader.GetString(0);
+                        entry.CrossTabFieldName = reader.GetString(2);
+                        entry.Ordinal = reader.GetInt32(7);
+                        entry.AFHSBOutputLength = reader.GetInt32(1);
+
+                        //-- If first entry then start index is 0, else calculate based on last entry
+                        entry.StartIndex = (data.Count == 0) ? 0 : data.Last().StartIndex + data.Last().AFHSBOutputLength;
+
+                        data.Add(entry);
                     }
                 }
+            }
+            return data;
+        }
+
+        public void PopulateTextArea(List<AFHSBEntry> data)
+        {
+            foreach (var item in data)
+            {
+                txt_Output.Text += item.ToString();
             }
         }
     }
