@@ -44,7 +44,7 @@ namespace AFHSBEntryGenerator
         }
         public override string ToString()
         {
-            return string.Format("new testAFHSBEntry(){{ AFHSBCrossTabFieldName = \"{0}\", StartIndex = {1}, AFHSBOutputLength = {2}, CrossTabFieldName = \"{3}\", Ordinal = {4}}},", AFHSBCrossTabFieldName, StartIndex.ToString(), AFHSBOutputLength, CrossTabFieldName, Ordinal);
+            return string.Format(@"new testAFHSBEntry(){{ AFHSBCrossTabFieldName = ""{0}"", StartIndex = {1}, AFHSBOutputLength = {2}, CrossTabFieldName = ""{3}"", Ordinal = {4}}},", AFHSBCrossTabFieldName, StartIndex.ToString(), AFHSBOutputLength, CrossTabFieldName, Ordinal);
         }
     }
 

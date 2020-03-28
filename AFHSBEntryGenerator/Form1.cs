@@ -21,9 +21,7 @@ namespace AFHSBEntryGenerator
 
         private void btn_Generate_Click(object sender, EventArgs e)
         {
-            var rows = GetRows();
-
-
+            PopulateTextArea(GetRows());
         }
 
         public List<AFHSBEntry> GetRows()
@@ -38,14 +36,14 @@ namespace AFHSBEntryGenerator
                 {
                     reader.Read(); //-- Skip the header row
 
-                    while (reader.Read())
+                    while (reader.Read() && reader.GetString(0) != null)
                     {
                         AFHSBEntry entry = new AFHSBEntry();
 
                         entry.AFHSBCrossTabFieldName = reader.GetString(0);
                         entry.CrossTabFieldName = reader.GetString(2);
-                        entry.Ordinal = reader.GetInt32(7);
-                        entry.AFHSBOutputLength = reader.GetInt32(1);
+                        entry.Ordinal = (int)reader.GetDouble(7);
+                        entry.AFHSBOutputLength = (int)reader.GetDouble(1);
 
                         //-- If first entry then start index is 0, else calculate based on last entry
                         entry.StartIndex = (data.Count == 0) ? 0 : data.Last().StartIndex + data.Last().AFHSBOutputLength;
@@ -59,9 +57,20 @@ namespace AFHSBEntryGenerator
 
         public void PopulateTextArea(List<AFHSBEntry> data)
         {
-            foreach (var item in data)
+            //foreach (var item in data)
+            //{
+            //    txt_Output.Text += item.ToString() + "\n";
+            //}
+            using (var fileStream = new FileStream("C:\\temp\\test.txt", FileMode.Append))
             {
-                txt_Output.Text += item.ToString();
+                using (var strmWrtr = new StreamWriter(fileStream))
+                {
+                    foreach (var item in data)
+                    {
+                        strmWrtr.WriteLine(item);
+                    }
+
+                }
             }
         }
     }
