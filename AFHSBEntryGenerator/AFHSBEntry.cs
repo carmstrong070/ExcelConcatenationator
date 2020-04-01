@@ -55,5 +55,23 @@ namespace AFHSBEntryGenerator
         public string NonMatchAFHSBValue { get; set; } = "";
 
         public string NullOrEmptyAFHSBValue { get; set; } = "";
+
+        // Constructors
+        public AFHSBEntryTranslateNeeded()
+        {      
+        }
+
+        public AFHSBEntryTranslateNeeded(string AFHSBCTFN, string AppCTFN, int startIndex, int length, int ordinal, List<(string, string)> applicationValueWithAFHSBValue, string nonMatchAFHSBValue = "", string nullOrEmptyAFHSBValue = "", bool nullable = true)
+        {
+            this.AFHSBCrossTabFieldName = AFHSBCTFN;
+            this.CrossTabFieldName = AppCTFN;
+            this.StartIndex = startIndex;
+            this.AFHSBOutputLength = length;
+            this.Ordinal = ordinal;
+            this.CanHaveNullValue = nullable;
+            this.ApplicationValueWithAFHSBValue = applicationValueWithAFHSBValue;
+            this.NonMatchAFHSBValue = nonMatchAFHSBValue;
+            this.NullOrEmptyAFHSBValue = nullOrEmptyAFHSBValue;
+        }
     }
 }

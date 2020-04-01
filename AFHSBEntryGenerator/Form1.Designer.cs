@@ -32,6 +32,7 @@
             this.lbl_Path = new System.Windows.Forms.Label();
             this.txt_Output = new System.Windows.Forms.TextBox();
             this.btn_Generate = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txt_Path
@@ -53,9 +54,8 @@
             // txt_Output
             // 
             this.txt_Output.Location = new System.Drawing.Point(56, 127);
-            this.txt_Output.Multiline = true;
             this.txt_Output.Name = "txt_Output";
-            this.txt_Output.Size = new System.Drawing.Size(501, 253);
+            this.txt_Output.Size = new System.Drawing.Size(501, 22);
             this.txt_Output.TabIndex = 2;
             // 
             // btn_Generate
@@ -68,12 +68,22 @@
             this.btn_Generate.UseVisualStyleBackColor = true;
             this.btn_Generate.Click += new System.EventHandler(this.btn_Generate_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(53, 103);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(115, 17);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Destination path:";
+            // 
             // Form1
             // 
             this.AcceptButton = this.btn_Generate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(735, 199);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_Generate);
             this.Controls.Add(this.txt_Output);
             this.Controls.Add(this.lbl_Path);
@@ -91,6 +101,7 @@
         private System.Windows.Forms.Label lbl_Path;
         private System.Windows.Forms.TextBox txt_Output;
         private System.Windows.Forms.Button btn_Generate;
+        private System.Windows.Forms.Label label1;
     }
 }
 

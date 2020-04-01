@@ -61,7 +61,7 @@ namespace AFHSBEntryGenerator
             //{
             //    txt_Output.Text += item.ToString() + "\n";
             //}
-            using (var fileStream = new FileStream("C:\\temp\\test.txt", FileMode.Append))
+            using (var fileStream = new FileStream("C:\\temp\\PHA.txt", FileMode.Append))
             {
                 using (var strmWrtr = new StreamWriter(fileStream))
                 {
