@@ -21,16 +21,14 @@ namespace AFHSBEntryGenerator
 
         private void btn_Generate_Click(object sender, EventArgs e)
         {
-            PopulateTextArea(GetRows());
+            PopulateTextArea(AddTranslations(GetRows()));
         }
 
         public List<AFHSBEntry> GetRows()
         {
             var data = new List<AFHSBEntry>();
 
-            string path = txt_Path.Text;
-
-            using (var stream = File.Open(path, FileMode.Open, FileAccess.Read))
+            using (var stream = File.Open(txt_Mappings.Text + "\\CTFN_Mapping.xlsx", FileMode.Open, FileAccess.Read))
             {
                 using (var reader = ExcelReaderFactory.CreateReader(stream))
                 {
@@ -55,13 +53,40 @@ namespace AFHSBEntryGenerator
             return data;
         }
 
+        public List<AFHSBEntry> AddTranslations(List<AFHSBEntry> data)
+        {
+            using (var stream = File.Open(txt_Mappings.Text + "\\Translations.xlsx", FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    reader.Read(); //-- Skip the header row
+
+                    while (reader.Read() && reader.GetString(0) != null)
+                    {
+                        int index = SearchListForAFHSBCTFN(data, reader.GetString(0));
+                        if (index != -1)
+                        {
+                            var tempEntry = new AFHSBEntryTranslateNeeded(data[index]);
+
+                            string[] EDCValues = reader.GetString(3).Split(',');
+                            string[] AFHSBValues = reader.GetString(2).Split(',');
+
+                            for (int i = 0; i < EDCValues.Length; i++)
+                            {
+                                tempEntry.ApplicationValueWithAFHSBValue.Add((EDCValues[i], AFHSBValues[i]));
+                            }
+                            data[index] = tempEntry;
+                        }
+                    }
+                }
+            }
+
+            return data;
+        }
+
         public void PopulateTextArea(List<AFHSBEntry> data)
         {
-            //foreach (var item in data)
-            //{
-            //    txt_Output.Text += item.ToString() + "\n";
-            //}
-            using (var fileStream = new FileStream("C:\\temp\\PHA.txt", FileMode.Append))
+            using (var fileStream = new FileStream(txt_Mappings.Text + "\\AFHSBEntries.txt", FileMode.Append))
             {
                 using (var strmWrtr = new StreamWriter(fileStream))
                 {
@@ -69,9 +94,20 @@ namespace AFHSBEntryGenerator
                     {
                         strmWrtr.WriteLine(item);
                     }
-
                 }
             }
+        }
+
+        public int SearchListForAFHSBCTFN(List<AFHSBEntry> list, string ctfn)
+        {
+            for (int i = 0; i < list.Count(); i++)
+            {
+                if (string.Equals(ctfn, list[i].AFHSBCrossTabFieldName))
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
     }
 }
