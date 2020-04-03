@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using ExcelDataReader;
 using CsvHelper;
 using System.Globalization;
@@ -27,7 +26,7 @@ namespace CopyPasteToAHLTAGenerator
         #region events
         private void btn_AddPath_Click(object sender, EventArgs e)
         {
-            if(IsPathValid(txt_Path.Text))
+            if (IsPathValid(txt_Path.Text))
                 listBox_Paths.Items.Add(txt_Path.Text);
             else
                 MessageBox.Show("Invalid path");
@@ -138,7 +137,7 @@ namespace CopyPasteToAHLTAGenerator
                 }
 
             }
-            
+
             using (var fileStream = new FileStream(txt_Destination.Text, FileMode.Append))
             {
                 using (var strmWrtr = new StreamWriter(fileStream))
@@ -173,7 +172,12 @@ namespace CopyPasteToAHLTAGenerator
                         //-- Add each row to List as a new object
                         while (reader.Read())
                         {
-                            data.Add(new TestExcelData(path.Substring(path.LastIndexOf("\\") + 1), File.GetCreationTime(path), File.GetLastWriteTime(path), reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4)));
+                            var testData = new TestExcelData();
+                            testData.column1 = reader.GetString(0);
+                            testData.column2 = reader.GetString(1);
+                            testData.column3 = reader.GetString(2);
+
+                            data.Add(testData);
                         }
                     }
                 }
@@ -210,8 +214,8 @@ namespace CopyPasteToAHLTAGenerator
         /// <param name="data"></param>
         private void UseCsvHelper(List<TestExcelData> data)
         {
-            using(var writer = new StreamWriter(txt_Destination.Text))
-            using(var csvWrtr = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            using (var writer = new StreamWriter(txt_Destination.Text))
+            using (var csvWrtr = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
                 //-- Write headers for csv file
                 foreach (string header in TestExcelData.GetPropertyDisplayNames())

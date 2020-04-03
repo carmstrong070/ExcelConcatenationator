@@ -1,4 +1,4 @@
-﻿namespace ExcelConcatenationator
+﻿namespace CopyPasteToAHLTAGenerator
 {
     partial class Form1
     {

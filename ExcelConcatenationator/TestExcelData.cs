@@ -7,9 +7,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExcelConcatenationator
+namespace CopyPasteToAHLTAGenerator
 {
-    class TestExcelData
+    public class TestExcelData
     {
         [DisplayName("File Name")]
         public string fileName { get; set; }
