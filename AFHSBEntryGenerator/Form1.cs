@@ -21,7 +21,7 @@ namespace AFHSBEntryGenerator
 
         private void btn_Generate_Click(object sender, EventArgs e)
         {
-            PopulateTextArea(AddTranslations(GetRows()));
+            WriteToFile(AddTranslations(GetRows()));
         }
 
         public List<AFHSBEntry> GetRows()
@@ -84,7 +84,7 @@ namespace AFHSBEntryGenerator
             return data;
         }
 
-        public void PopulateTextArea(List<AFHSBEntry> data)
+        public void WriteToFile(List<AFHSBEntry> data)
         {
             using (var fileStream = new FileStream(txt_Mappings.Text + "\\AFHSBEntries.txt", FileMode.Append))
             {
