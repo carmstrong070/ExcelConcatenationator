@@ -50,7 +50,7 @@ namespace AFHSBEntryGenerator
 
     public class AFHSBEntryTranslateNeeded : AFHSBEntry
     {
-        public List<(string EDCValue, string AFHSCValue)> ApplicationValueWithAFHSBValue { get; set; }
+        public List<(string EDCValue, string AFHSBValue)> ApplicationValueWithAFHSBValue { get; set; }
 
         public string NonMatchAFHSBValue { get; set; } = "";
 
@@ -58,7 +58,18 @@ namespace AFHSBEntryGenerator
 
         // Constructors
         public AFHSBEntryTranslateNeeded()
-        {      
+        {
+
+        }
+        public AFHSBEntryTranslateNeeded(AFHSBEntry entry)
+        {
+            this.AFHSBCrossTabFieldName = entry.AFHSBCrossTabFieldName;
+            this.CrossTabFieldName = entry.CrossTabFieldName;
+            this.StartIndex = entry.StartIndex;
+            this.AFHSBOutputLength = entry.AFHSBOutputLength;
+            this.Ordinal = entry.Ordinal;
+            this.CanHaveNullValue = entry.CanHaveNullValue;
+            this.ApplicationValueWithAFHSBValue = new List<(string EDCValue, string AFHSBValue)>();
         }
 
         public AFHSBEntryTranslateNeeded(string AFHSBCTFN, string AppCTFN, int startIndex, int length, int ordinal, List<(string, string)> applicationValueWithAFHSBValue, string nonMatchAFHSBValue = "", string nullOrEmptyAFHSBValue = "", bool nullable = true)
@@ -72,6 +83,21 @@ namespace AFHSBEntryGenerator
             this.ApplicationValueWithAFHSBValue = applicationValueWithAFHSBValue;
             this.NonMatchAFHSBValue = nonMatchAFHSBValue;
             this.NullOrEmptyAFHSBValue = nullOrEmptyAFHSBValue;
+        }
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendFormat(@"new AFHSBEntryTranslateNeeded(){{ AFHSBCrossTabFieldName = ""{0}"", StartIndex = {1}, AFHSBOutputLength = {2}, CrossTabFieldName = ""{3}"", Ordinal = {4},", AFHSBCrossTabFieldName, StartIndex.ToString(), AFHSBOutputLength, CrossTabFieldName, Ordinal);
+            sb.AppendLine();
+            sb.Append("\t ApplicationValueWithAFHSCValue = new Dictionary<string, string>(){");
+            for (int i = 0; i < ApplicationValueWithAFHSBValue.Count; i++)
+            {
+                sb.AppendFormat(@"{{""{0}"", ""{1}""}},", ApplicationValueWithAFHSBValue[i].EDCValue, ApplicationValueWithAFHSBValue[i].AFHSBValue);
+            }
+            sb.Append("},");
+
+            return sb.ToString();
         }
     }
 }
