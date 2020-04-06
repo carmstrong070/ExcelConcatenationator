@@ -167,22 +167,31 @@ namespace CopyPasteToAHLTAGenerator
                 {
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
-                        reader.NextResult(); //-- Skip the header row
+                        //reader.NextResult(); //-- Skip the header row
 
                         //-- Add each row to List as a new object
                         while (reader.Read())
                         {
                             var testData = new TestExcelData();
-                            testData.column1 = reader.GetString(0);
-                            testData.column2 = reader.GetString(1);
-                            testData.column3 = reader.GetString(2);
+                            testData.column1 = reader.GetString(1);
+                            testData.column2 = reader.GetString(2);                          
 
                             data.Add(testData);
                         }
-                    }
+                    }                   
                 }
-
             }
+
+            string method = "";
+
+            for(int i = 0; i < data.Count; i++)
+            {
+                method += "internal static string " + data[i].column1 + "_StaticLabel(){ \n \t return " + "\"" + data[i].column2 + "\";" + "\n } \n \n";
+            }
+            
+
+            System.IO.File.WriteAllText(@"C:\Users\casey\OneDrive\Desktop\WriteLines.txt", method);
+
             return data;
         }
 
