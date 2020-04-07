@@ -55,6 +55,9 @@ namespace AFHSBEntryGenerator
 
         public List<AFHSBEntry> AddTranslations(List<AFHSBEntry> data)
         {
+            if (!File.Exists(txt_Mappings.Text + "\\Translations.xlsx"))
+                return data;
+
             using (var stream = File.Open(txt_Mappings.Text + "\\Translations.xlsx", FileMode.Open, FileAccess.Read))
             {
                 using (var reader = ExcelReaderFactory.CreateReader(stream))

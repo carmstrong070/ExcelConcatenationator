@@ -44,7 +44,7 @@ namespace AFHSBEntryGenerator
         }
         public override string ToString()
         {
-            return string.Format(@"new testAFHSBEntry(){{ AFHSBCrossTabFieldName = ""{0}"", StartIndex = {1}, AFHSBOutputLength = {2}, CrossTabFieldName = ""{3}"", Ordinal = {4}}},", AFHSBCrossTabFieldName, StartIndex.ToString(), AFHSBOutputLength, CrossTabFieldName, Ordinal);
+            return string.Format(@"new AFHSBEntry(){{ AFHSBCrossTabFieldName = ""{0}"", StartIndex = {1}, AFHSBOutputLength = {2}, CrossTabFieldName = ""{3}"", Ordinal = {4}}},", AFHSBCrossTabFieldName, StartIndex.ToString(), AFHSBOutputLength, CrossTabFieldName, Ordinal);
         }
     }
 
@@ -88,14 +88,11 @@ namespace AFHSBEntryGenerator
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendFormat(@"new AFHSBEntryTranslateNeeded(){{ AFHSBCrossTabFieldName = ""{0}"", StartIndex = {1}, AFHSBOutputLength = {2}, CrossTabFieldName = ""{3}"", Ordinal = {4},", AFHSBCrossTabFieldName, StartIndex.ToString(), AFHSBOutputLength, CrossTabFieldName, Ordinal);
+            sb.AppendFormat(@"new AFHSBEntry_TranslateNeeded(){{ AFHSBCrossTabFieldName = ""{0}"", StartIndex = {1}, AFHSBOutputLength = {2}, CrossTabFieldName = ""{3}"", Ordinal = {4},", AFHSBCrossTabFieldName, StartIndex.ToString(), AFHSBOutputLength, CrossTabFieldName, Ordinal);
             sb.AppendLine();
-            sb.Append("\t ApplicationValueWithAFHSCValue = new Dictionary<string, string>(){");
-            for (int i = 0; i < ApplicationValueWithAFHSBValue.Count; i++)
-            {
-                sb.AppendFormat(@"{{""{0}"", ""{1}""}},", ApplicationValueWithAFHSBValue[i].EDCValue, ApplicationValueWithAFHSBValue[i].AFHSBValue);
-            }
-            sb.Append("},");
+            sb.Append("\t ApplicationValueWithAFHSCValue = new List<(string EDCValue, string AFHSCValue)>(){");
+            sb.AppendFormat(@"{0}", string.Join(", ", ApplicationValueWithAFHSBValue.Select(x => "(\"" + x.EDCValue + "\", \"" + x.AFHSBValue + "\")")));
+            sb.Append("} },");
 
             return sb.ToString();
         }
