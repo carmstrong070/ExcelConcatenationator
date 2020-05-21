@@ -8,6 +8,8 @@ namespace CopyPasteToAHLTAGenerator
 {
     internal class AHLTAEntry
     {
+        public string QuestionIdentifier { get; set; }
+
         public string CTFN { get; set; }
 
         public string QuestionText { get; set; }
@@ -34,6 +36,7 @@ namespace CopyPasteToAHLTAGenerator
 
             sb.AppendLine("\t\t\t\t\tnew ReviewQuestionGroup");
             sb.AppendLine("\t\t\t\t\t{");
+            sb.AppendFormat("\t\t\t\t\t\tQuestionIdentifier = \"{0}\",\r\n", QuestionIdentifier);
             sb.AppendLine("\t\t\t\t\t\tContentResponses = new List<ReviewContent>");
             sb.AppendLine("\t\t\t\t\t\t{");
             sb.AppendLine("\t\t\t\t\t\t\tnew ReviewContent");
@@ -46,13 +49,12 @@ namespace CopyPasteToAHLTAGenerator
             sb.AppendLine("\t\t\t\t\t\t\t{");
             sb.AppendFormat("\t\t\t\t\t\t\t\tCrossTabFieldName = \"{0}\",\r\n", CTFN);
             if (NeedsNewMethod)
-                sb.AppendFormat("\t\t\t\t\t\t\t\ttranslate = kvp => ValueConversion.translate_NotImplemented(kvp[\"{0}\"])\r\n", CTFN);
+                sb.AppendFormat("\t\t\t\t\t\t\t\ttranslate = kvp => AHLTA_ValueConversion.translate_NotImplemented(kvp[\"{0}\"])\r\n", CTFN);
             else
-                sb.AppendFormat("\t\t\t\t\t\t\t\ttranslate = kvp => ValueConversion.translate_{0}(kvp[\"{1}\"])\r\n", TranslateMethod, CTFN);
+                sb.AppendFormat("\t\t\t\t\t\t\t\ttranslate = kvp => AHLTA_ValueConversion.translate_{0}(kvp[\"{1}\"])\r\n", TranslateMethod, CTFN);
             sb.AppendLine("\t\t\t\t\t\t\t}");
             sb.AppendLine("\t\t\t\t\t\t}");
             sb.AppendLine("\t\t\t\t\t},");
-            sb.AppendLine();
 
 
             return sb.ToString();

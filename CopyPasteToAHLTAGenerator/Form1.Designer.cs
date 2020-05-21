@@ -36,11 +36,13 @@ namespace CopyPasteToAHLTAGenerator
             this.lbl_EnterPath = new System.Windows.Forms.Label();
             this.txt_Path = new System.Windows.Forms.TextBox();
             this.btn_GenerateSegments = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txt_Sheet = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btn_StaticLabels
             // 
-            this.btn_StaticLabels.Location = new System.Drawing.Point(477, 60);
+            this.btn_StaticLabels.Location = new System.Drawing.Point(272, 244);
             this.btn_StaticLabels.Margin = new System.Windows.Forms.Padding(4);
             this.btn_StaticLabels.Name = "btn_StaticLabels";
             this.btn_StaticLabels.Size = new System.Drawing.Size(176, 27);
@@ -52,7 +54,7 @@ namespace CopyPasteToAHLTAGenerator
             // lbl_Destination
             // 
             this.lbl_Destination.AutoSize = true;
-            this.lbl_Destination.Location = new System.Drawing.Point(49, 103);
+            this.lbl_Destination.Location = new System.Drawing.Point(49, 155);
             this.lbl_Destination.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Destination.Name = "lbl_Destination";
             this.lbl_Destination.Size = new System.Drawing.Size(116, 17);
@@ -61,7 +63,7 @@ namespace CopyPasteToAHLTAGenerator
             // 
             // txt_Destination
             // 
-            this.txt_Destination.Location = new System.Drawing.Point(52, 124);
+            this.txt_Destination.Location = new System.Drawing.Point(52, 176);
             this.txt_Destination.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Destination.Name = "txt_Destination";
             this.txt_Destination.Size = new System.Drawing.Size(396, 22);
@@ -70,7 +72,7 @@ namespace CopyPasteToAHLTAGenerator
             // lbl_EnterPath
             // 
             this.lbl_EnterPath.AutoSize = true;
-            this.lbl_EnterPath.Location = new System.Drawing.Point(49, 41);
+            this.lbl_EnterPath.Location = new System.Drawing.Point(49, 93);
             this.lbl_EnterPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_EnterPath.Name = "lbl_EnterPath";
             this.lbl_EnterPath.Size = new System.Drawing.Size(90, 17);
@@ -79,7 +81,7 @@ namespace CopyPasteToAHLTAGenerator
             // 
             // txt_Path
             // 
-            this.txt_Path.Location = new System.Drawing.Point(52, 62);
+            this.txt_Path.Location = new System.Drawing.Point(52, 114);
             this.txt_Path.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Path.Name = "txt_Path";
             this.txt_Path.Size = new System.Drawing.Size(396, 22);
@@ -87,7 +89,7 @@ namespace CopyPasteToAHLTAGenerator
             // 
             // btn_GenerateSegments
             // 
-            this.btn_GenerateSegments.Location = new System.Drawing.Point(477, 122);
+            this.btn_GenerateSegments.Location = new System.Drawing.Point(52, 244);
             this.btn_GenerateSegments.Name = "btn_GenerateSegments";
             this.btn_GenerateSegments.Size = new System.Drawing.Size(176, 27);
             this.btn_GenerateSegments.TabIndex = 21;
@@ -95,11 +97,29 @@ namespace CopyPasteToAHLTAGenerator
             this.btn_GenerateSegments.UseVisualStyleBackColor = true;
             this.btn_GenerateSegments.Click += new System.EventHandler(this.btn_GenerateSegments_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(49, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 17);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Sheet Number:";
+            // 
+            // txt_Sheet
+            // 
+            this.txt_Sheet.Location = new System.Drawing.Point(52, 54);
+            this.txt_Sheet.Name = "txt_Sheet";
+            this.txt_Sheet.Size = new System.Drawing.Size(37, 22);
+            this.txt_Sheet.TabIndex = 23;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(704, 198);
+            this.ClientSize = new System.Drawing.Size(526, 322);
+            this.Controls.Add(this.txt_Sheet);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_GenerateSegments);
             this.Controls.Add(this.btn_StaticLabels);
             this.Controls.Add(this.lbl_Destination);
@@ -126,6 +146,8 @@ namespace CopyPasteToAHLTAGenerator
         private System.Windows.Forms.Label lbl_EnterPath;
         private System.Windows.Forms.TextBox txt_Path;
         private System.Windows.Forms.Button btn_GenerateSegments;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txt_Sheet;
     }
 }
 

@@ -22,10 +22,6 @@ namespace CopyPasteToAHLTAGenerator
         }
 
         #region events
-        private void btn_AddPath_Click(object sender, EventArgs e)
-        {
-        }
-
         private void btn_StaticLabels_Click(object sender, EventArgs e)
         {
             if (!IsPathValid(txt_Destination.Text.Substring(0, txt_Destination.Text.LastIndexOf("\\"))))
@@ -68,21 +64,26 @@ namespace CopyPasteToAHLTAGenerator
             {
                 using (var reader = ExcelReaderFactory.CreateReader(stream))
                 {
-                    //reader.NextResult(); //-- Skip 1st sheet
-                    //reader.NextResult(); //-- Skip 2nd sheet
+                    for (int i = 0; i < Convert.ToInt32(txt_Sheet.Text != "" ? txt_Sheet.Text : "0"); i++)
+                    {
+                        if (i > 0 ) reader.NextResult(); //-- Skip sheet
+                    }
+
                     reader.Read();//-- Skip the header row
 
-                    //-- Add each row to List as a new object
-                    while (reader.Read() && reader.GetString(0) != "")
-                    {
-                        var entry = new AHLTAEntry();
-                        entry.CTFN = reader.GetString(0);
-                        entry.QuestionText = reader.GetString(1);
-                        entry.TranslateMethod = reader.GetString(2);
-                        entry.NeedsNewMethod = reader.GetString(3) != "";
-                        
-                        data.Add(entry);
-                    }
+                        //-- Add each row to List as a new object
+                        while (reader.Read() && reader.GetString(0) != "")
+                        {
+                            var entry = new AHLTAEntry();
+
+                            entry.QuestionIdentifier = reader.GetString(0);
+                            entry.CTFN = reader.GetString(1);
+                            entry.QuestionText = reader.GetString(2);
+                            //entry.TranslateMethod = reader.GetString(3);
+                            //entry.NeedsNewMethod = reader.GetString(4) != "";
+
+                            data.Add(entry);
+                        }
                 }                   
             }
             return data;
@@ -114,5 +115,6 @@ namespace CopyPasteToAHLTAGenerator
                 }
             }
         }
+
     }
 }
