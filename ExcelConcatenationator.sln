@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29806.167
+VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelConcatenationator", "ExcelConcatenationator\ExcelConcatenationator.csproj", "{613E07E4-23AA-4149-B964-0F44FF94D2C0}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AFHSBEntryGenerator", "AFHS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopyPasteToAHLTAGenerator", "CopyPasteToAHLTAGenerator\CopyPasteToAHLTAGenerator.csproj", "{1905323F-9578-43D9-B1A1-B7E4D907324A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PHA_AFHSB_ValidValuesJSON", "PHA_AFHSB_ValidValuesJSON\PHA_AFHSB_ValidValuesJSON.csproj", "{05F87B33-840F-4FC3-8073-1E328A35D8B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LhiJsonGenerator", "LhiJsonGenerator\LhiJsonGenerator.csproj", "{F80BFC43-9DEF-4EDC-91A0-988F88179890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{1905323F-9578-43D9-B1A1-B7E4D907324A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1905323F-9578-43D9-B1A1-B7E4D907324A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1905323F-9578-43D9-B1A1-B7E4D907324A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{05F87B33-840F-4FC3-8073-1E328A35D8B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05F87B33-840F-4FC3-8073-1E328A35D8B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05F87B33-840F-4FC3-8073-1E328A35D8B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05F87B33-840F-4FC3-8073-1E328A35D8B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F80BFC43-9DEF-4EDC-91A0-988F88179890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F80BFC43-9DEF-4EDC-91A0-988F88179890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F80BFC43-9DEF-4EDC-91A0-988F88179890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F80BFC43-9DEF-4EDC-91A0-988F88179890}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
