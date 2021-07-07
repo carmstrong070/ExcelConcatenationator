@@ -14,7 +14,7 @@ namespace LhiJsonGenerator
 
         public string assessmentVersion { get; set; }
 
-        public List<LHIField> Fields { get; set; }
+        public List<LHIField> Fields { get; set; } = new List<LHIField>();
     }
 
     public class LHIField
@@ -27,8 +27,10 @@ namespace LhiJsonGenerator
 
         public string lhiValueDataType { get; set; }
 
-        public Dictionary<string, string> valueMapping { get; set; }
+        public Dictionary<string, string> valueMapping { get; set; } = new Dictionary<string, string>();
 
         public bool useValueAsIs { get; set; } = false;
+
+        public bool NeedsFurtherEvaluation { get; set; } = false;
     }
 }
