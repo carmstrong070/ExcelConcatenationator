@@ -47,6 +47,9 @@ namespace LhiJsonGenerator
 
                         if (!string.IsNullOrEmpty(reader.GetString(5)))
                             entry.NeedsFurtherEvaluation = true;
+                        //-- If either of the CTFNs are missing, nees further evaluation
+                        if (reader.GetString(0) == "None" || string.IsNullOrEmpty(reader.GetString(1)))
+                            entry.NeedsFurtherEvaluation = true;
 
                         //-- Value type/mapping
                         if (reader.GetString(2) == "text")
@@ -67,14 +70,20 @@ namespace LhiJsonGenerator
                             entry.lhiValueDataType = "DateTime";
                             entry.useValueAsIs = true;
                         }
+                        else if (reader.GetString(2) == "int")
+                        {
+                            entry.edhaValueDataType = "int";
+                            entry.lhiValueDataType = "int";
+                            entry.useValueAsIs = true;
+                        }
                         else if (reader.GetString(2) == "radio")
                         {
                             entry.edhaValueDataType = "string";
                             entry.lhiValueDataType = "string";
-                            if (reader.GetString(3) == reader.GetString(4))
+                            if (reader.GetValue(3)?.ToString() == reader.GetValue(4)?.ToString())
                                 entry.useValueAsIs = true;
 
-                            entry.valueMapping = GetValueMapping(reader.GetString(3).Split(','), reader.GetString(4).Split(','));
+                            entry.valueMapping = GetValueMapping(reader.GetValue(3)?.ToString().Split(','), reader.GetValue(4)?.ToString().Split(','));
                         }
 
                         data.Fields.Add(entry);
