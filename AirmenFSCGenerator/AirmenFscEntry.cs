@@ -99,7 +99,7 @@ namespace AirmenFSCTableGenerator
                                 </tr>", entry.SffpNumber, entry.SffpTextCtfn, entry.FscProvCommentsCtfn, entry.FscCdNcdCtfn, entry.FscWaiverCtfn, entry.FscIcd10Ctfn, entry.SffpCtfn);
         }
 
-        internal static string ToStringInitialControlState(this AirmenFscEntry entry)sdfsdf
+        internal static string ToStringInitialControlState(this AirmenFscEntry entry)
         {
             return string.Format(@"            if (SegmentData.ContainsKey(""{0}"") && SegmentData[""{0}""] == ""Y"")
             {
