@@ -44,6 +44,10 @@ namespace AirmenFSCGenerator
         {
 
         }
+        private void btn_GenerateValidValues_Click(object sender, EventArgs e)
+        {
+            WriteGenerateValidValues(GetRows());
+        }
 
         public List<AirmenFscEntry> GetRows()
         {
@@ -123,6 +127,20 @@ namespace AirmenFSCGenerator
                     foreach (var item in data)
                     {
                         strmWrtr.WriteLine(item.ToStringAHLTA());
+                    }
+                }
+            }
+        }
+
+        private void WriteGenerateValidValues(List<AirmenFscEntry> data)
+        {
+            using (var fileStream = new FileStream("C:\\Temp\\AirmenInitialControlStateGeneration.txt", FileMode.Append))
+            {
+                using (var strmWrtr = new StreamWriter(fileStream))
+                {
+                    foreach (var item in data)
+                    {
+                        strmWrtr.WriteLine(item.ToStringValidValues());
                     }
                 }
             }

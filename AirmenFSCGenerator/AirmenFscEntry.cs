@@ -112,6 +112,19 @@ namespace AirmenFSCTableGenerator
             }}", entry.SffpCtfn, entry.FscProvCommentsCtfn, entry.FscWaiverCtfn);
         }
 
+
+        internal static string ToStringValidValues(this AirmenFscEntry entry)
+        {
+            return string.Format(@"            new CFNameValidValue(""{0}"","""", CFNameValidValueType.Text, 250),
+                new CFNameValidValue(""{1}"", """", CFNameValidValueType.Text, 3),
+                new CFNameValidValue(""{2}"", """", CFNameValidValueType.Text, 3),
+                new CFNameValidValue(""{3}"", """", CFNameValidValueType.Text, 10),
+
+            ", entry.FscProvCommentsCtfn, entry.FscCdNcdCtfn, entry.FscWaiverCtfn, entry.FscIcd10Ctfn);
+        }
+
+
+
         internal static string ToStringResponseReview(this AirmenFscEntry entry)
         {
             return string.Format(@"", entry.SffpCtfn);
