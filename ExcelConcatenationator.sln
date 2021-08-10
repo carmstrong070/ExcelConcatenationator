@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopyPasteToAHLTAGenerator",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LhiJsonGenerator", "LhiJsonGenerator\LhiJsonGenerator.csproj", "{F80BFC43-9DEF-4EDC-91A0-988F88179890}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirmenFSCGenerator", "AirmenFSCGenerator\AirmenFSCGenerator.csproj", "{8AA861BB-A45D-4C9C-BB3E-A5D13809F855}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{F80BFC43-9DEF-4EDC-91A0-988F88179890}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F80BFC43-9DEF-4EDC-91A0-988F88179890}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F80BFC43-9DEF-4EDC-91A0-988F88179890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AA861BB-A45D-4C9C-BB3E-A5D13809F855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AA861BB-A45D-4C9C-BB3E-A5D13809F855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AA861BB-A45D-4C9C-BB3E-A5D13809F855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AA861BB-A45D-4C9C-BB3E-A5D13809F855}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
