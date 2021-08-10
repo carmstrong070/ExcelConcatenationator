@@ -34,6 +34,8 @@ namespace AirmenFSCGenerator
             this.btn_GenerateHtml = new System.Windows.Forms.Button();
             this.lbl_PathToExcel = new System.Windows.Forms.Label();
             this.txt_PathToExcel = new System.Windows.Forms.TextBox();
+            this.btn_GenerateResponseReview = new System.Windows.Forms.Button();
+            this.btn_GenerateAHLTA = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_GenerateApplyValues
@@ -82,11 +84,33 @@ namespace AirmenFSCGenerator
             this.txt_PathToExcel.Size = new System.Drawing.Size(306, 20);
             this.txt_PathToExcel.TabIndex = 5;
             // 
+            // btn_GenerateResponseReview
+            // 
+            this.btn_GenerateResponseReview.Location = new System.Drawing.Point(487, 143);
+            this.btn_GenerateResponseReview.Name = "btn_GenerateResponseReview";
+            this.btn_GenerateResponseReview.Size = new System.Drawing.Size(167, 23);
+            this.btn_GenerateResponseReview.TabIndex = 10;
+            this.btn_GenerateResponseReview.Text = "Generate Response Review";
+            this.btn_GenerateResponseReview.UseVisualStyleBackColor = true;
+            this.btn_GenerateResponseReview.Click += new System.EventHandler(this.btn_GenerateResponseReview_Click);
+            // 
+            // btn_GenerateAHLTA
+            // 
+            this.btn_GenerateAHLTA.Location = new System.Drawing.Point(487, 173);
+            this.btn_GenerateAHLTA.Name = "btn_GenerateAHLTA";
+            this.btn_GenerateAHLTA.Size = new System.Drawing.Size(167, 23);
+            this.btn_GenerateAHLTA.TabIndex = 11;
+            this.btn_GenerateAHLTA.Text = "Generate AHLTA";
+            this.btn_GenerateAHLTA.UseVisualStyleBackColor = true;
+            this.btn_GenerateAHLTA.Click += new System.EventHandler(this.btn_GenerateAHLTA_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_GenerateAHLTA);
+            this.Controls.Add(this.btn_GenerateResponseReview);
             this.Controls.Add(this.btn_GenerateApplyValues);
             this.Controls.Add(this.btn_GenerateCodeBehindBehavior);
             this.Controls.Add(this.btn_GenerateHtml);
@@ -106,6 +130,8 @@ namespace AirmenFSCGenerator
         private System.Windows.Forms.Button btn_GenerateHtml;
         private System.Windows.Forms.Label lbl_PathToExcel;
         private System.Windows.Forms.TextBox txt_PathToExcel;
+        private System.Windows.Forms.Button btn_GenerateResponseReview;
+        private System.Windows.Forms.Button btn_GenerateAHLTA;
     }
 }
 

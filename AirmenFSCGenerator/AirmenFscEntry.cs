@@ -112,5 +112,14 @@ namespace AirmenFSCTableGenerator
             }", entry.SffpCtfn, entry.FscProvCommentsCtfn, entry.FscWaiverCtfn);
         }
 
+        internal static string ToStringResponseReview(this AirmenFscEntry entry)
+        {
+            return string.Format(@"", entry.SffpCtfn);
+        }
+
+        internal static string ToStringAHLTA(this AirmenFscEntry entry)
+        {
+            return string.Format(@"", entry.SffpCtfn);
+        }
     }
 }

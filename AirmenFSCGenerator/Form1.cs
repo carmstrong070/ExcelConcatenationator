@@ -35,6 +35,16 @@ namespace AirmenFSCGenerator
             WriteInitialControlStateToFile(GetRows());
         }
 
+        private void btn_GenerateResponseReview_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_GenerateAHLTA_Click(object sender, EventArgs e)
+        {
+
+        }
+
         public List<AirmenFscEntry> GetRows()
         {
             var data = new List<AirmenFscEntry>();
@@ -85,6 +95,34 @@ namespace AirmenFSCGenerator
                     foreach (var item in data)
                     {
                         strmWrtr.WriteLine(item.ToStringInitialControlState());
+                    }
+                }
+            }
+        }
+
+        public void WriteResponseReviewToFile(List<AirmenFscEntry> data)
+        {
+            using (var fileStream = new FileStream("C:\\Temp\\AirmenResponseReviewGeneration.txt", FileMode.Append))
+            {
+                using (var strmWrtr = new StreamWriter(fileStream))
+                {
+                    foreach (var item in data)
+                    {
+                        strmWrtr.WriteLine(item.ToStringResponseReview());
+                    }
+                }
+            }
+        }
+
+        public void WriteAHLTAToFile(List<AirmenFscEntry> data)
+        {
+            using (var fileStream = new FileStream("C:\\Temp\\AirmenAHLTAGeneration.txt", FileMode.Append))
+            {
+                using (var strmWrtr = new StreamWriter(fileStream))
+                {
+                    foreach (var item in data)
+                    {
+                        strmWrtr.WriteLine(item.ToStringAHLTA());
                     }
                 }
             }
