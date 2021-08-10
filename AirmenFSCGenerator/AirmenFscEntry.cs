@@ -102,14 +102,14 @@ namespace AirmenFSCTableGenerator
         internal static string ToStringInitialControlState(this AirmenFscEntry entry)
         {
             return string.Format(@"            if (SegmentData.ContainsKey(""{0}"") && SegmentData[""{0}""] == ""Y"")
-            {
+            {{
                 row{0}.Attributes[""class""] = """";
                 if (IsHCP)
-                {
+                {{
                     this.cVal_{1}.Enabled = true;
                     this.cVal_{2}.Enabled = true;
-                }
-            }", entry.SffpCtfn, entry.FscProvCommentsCtfn, entry.FscWaiverCtfn);
+                }}
+            }}", entry.SffpCtfn, entry.FscProvCommentsCtfn, entry.FscWaiverCtfn);
         }
 
         internal static string ToStringResponseReview(this AirmenFscEntry entry)
