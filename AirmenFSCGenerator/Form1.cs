@@ -37,12 +37,12 @@ namespace AirmenFSCGenerator
 
         private void btn_GenerateResponseReview_Click(object sender, EventArgs e)
         {
-
+            WriteResponseReviewToFile(GetRows());
         }
 
         private void btn_GenerateAHLTA_Click(object sender, EventArgs e)
         {
-
+            WriteAHLTAToFile(GetRows());
         }
         private void btn_GenerateValidValues_Click(object sender, EventArgs e)
         {

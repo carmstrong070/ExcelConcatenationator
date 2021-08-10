@@ -113,6 +113,174 @@ namespace AirmenFSCTableGenerator
         }
 
 
+
+        internal static string ToStringResponseReview(this AirmenFscEntry entry)
+        {
+            return string.Format(@"
+                            //ROW {0}
+							// SFFP Number
+							new ReviewContentHTML
+							{{
+								CrossTabFieldName = ""{1}"",
+								IsRedirectable = true,
+								translate = kvp => LabelDefinitions.FSC_SFFP_FPE_StaticLabel()
+							}},
+							new ReviewContentResponse
+							{{
+								CrossTabFieldName = ""{1}"",
+								IsRedirectable = true,
+                                translate = kvp => LabelDefinitions.SFFP_{0}StaticLabel()
+                            }},
+
+							// SFFP SM Response
+							new ReviewContentHTML
+							{{
+								CrossTabFieldName = ""{2}"",
+								IsRedirectable = true,
+								translate = kvp => LabelDefinitions.FSC_COMMENTS_StaticLabel()
+                            }},
+							new ReviewContentResponse
+							{{
+								CrossTabFieldName = ""{2}"",
+								IsRedirectable = true,
+								translate = kvp => AHLTA_ValueConversion.TranslateTextboxValue(kvp[""{2}""])
+                            }},
+
+							// Provider Comments
+							new ReviewContentHTML
+                            {{
+								CrossTabFieldName = ""{3}"",
+								IsRedirectable = true,
+                                translate = kvp => LabelDefinitions.FSC_PROVIDER_COMMENTS_StaticLabel()
+                            }},
+							new ReviewContentResponse
+                            {{
+                                CrossTabFieldName = ""{3}"",
+								IsRedirectable = true,
+                                translate = kvp => AHLTA_ValueConversion.TranslateTextboxValue(kvp[""{3}""])
+                            }},
+
+							// NCD/CD
+							new ReviewContentHTML
+                            {{
+                                CrossTabFieldName = ""{4}"",
+								IsRedirectable = true,
+                                translate = kvp => LabelDefinitions.FSC_CD_NCD_StaticLabel()
+                            }},
+							new ReviewContentResponse
+                            {{
+                                CrossTabFieldName = ""{4}"",
+								IsRedirectable = true,
+                                translate = kvp => AHLTA_ValueConversion.TranslateTextboxValue(kvp[""{4}""])
+                            }},
+
+							// Waiver
+							new ReviewContentHTML
+                            {{
+                                CrossTabFieldName = ""{5}"",
+								IsRedirectable = true,
+                                translate = kvp => LabelDefinitions.FSC_WAIVER_StaticLabel()
+                            }},
+							new ReviewContentResponse
+                            {{
+                                CrossTabFieldName = ""{5}"",
+								IsRedirectable = true,
+                                translate = kvp => AHLTA_ValueConversion.TranslateTextboxValue(kvp[""{5}""])
+                            }},
+
+							// ICD10
+							new ReviewContentHTML
+                            {{
+                                CrossTabFieldName = ""{6}"",
+								IsRedirectable = true,
+                                translate = kvp => LabelDefinitions.FSC_ICD10_StaticLabel()
+                            }},
+							new ReviewContentResponse
+                            {{
+                                CrossTabFieldName = ""{6}"",
+								IsRedirectable = true,
+                                translate = kvp => AHLTA_ValueConversion.TranslateTextboxValue(kvp[""{6}""])
+                            }},", entry.SffpNumber, entry.SffpCtfn, entry.SffpTextCtfn, entry.FscProvCommentsCtfn, entry.FscCdNcdCtfn, entry.FscWaiverCtfn, entry.FscIcd10Ctfn);
+        }
+
+        internal static string ToStringAHLTA(this AirmenFscEntry entry)
+        {
+            return string.Format(@"
+                            //ROW {0}
+							// SFFP Number
+							new ReviewContent
+							{{
+								IsLabel = true,
+								translate = kvp => LabelDefinitions.FSC_SFFP_FPE_StaticLabel()
+							}},
+							new ReviewContent
+							{{
+								CrossTabFieldName = ""{1}"",
+                                translate = kvp => LabelDefinitions.SFFP_{0}StaticLabel()
+                            }},
+
+							// SFFP SM Response
+							new ReviewContent
+							{{
+								IsLabel = true,
+								translate = kvp => LabelDefinitions.FSC_COMMENTS_StaticLabel()
+                            }},
+							new ReviewContent
+							{{
+								CrossTabFieldName = ""{2}"",
+								translate = kvp => AHLTA_ValueConversion.TranslateTextboxValue(kvp[""{2}""])
+                            }},
+
+							// Provider Comments
+							new ReviewContent
+                            {{
+                                IsLabel = true,
+                                translate = kvp => LabelDefinitions.FSC_PROVIDER_COMMENTS_StaticLabel()
+                            }},
+							new ReviewContent
+                            {{
+                                CrossTabFieldName = ""{3}"",
+                                translate = kvp => AHLTA_ValueConversion.TranslateTextboxValue(kvp[""{3}""])
+                            }},
+
+							// NCD/CD
+							new ReviewContent
+                            {{
+                                IsLabel = true,
+                                translate = kvp => LabelDefinitions.FSC_CD_NCD_StaticLabel()
+                            }},
+							new ReviewContent
+                            {{
+                                CrossTabFieldName = ""{4}"",
+                                translate = kvp => AHLTA_ValueConversion.TranslateTextboxValue(kvp[""{4}""])
+                            }},
+
+							// Waiver
+							new ReviewContent
+                            {{
+                                IsLabel = true,
+                                translate = kvp => LabelDefinitions.FSC_WAIVER_StaticLabel()
+                            }},
+							new ReviewContent
+                            {{
+                                CrossTabFieldName = ""{5}"",
+                                translate = kvp => AHLTA_ValueConversion.TranslateTextboxValue(kvp[""{5}""])
+                            }},
+
+							// ICD10
+							new ReviewContent
+                            {{
+                                IsLabel = true,
+                                translate = kvp => LabelDefinitions.FSC_ICD10_StaticLabel()
+                            }},
+							new ReviewContent
+                            {{
+                                CrossTabFieldName = ""{6}"",
+                                translate = kvp => AHLTA_ValueConversion.TranslateTextboxValue(kvp[""{6}""])
+                            }},", entry.SffpNumber, entry.SffpCtfn, entry.SffpTextCtfn, entry.FscProvCommentsCtfn, entry.FscCdNcdCtfn, entry.FscWaiverCtfn, entry.FscIcd10Ctfn);
+        }
+        
+        
         internal static string ToStringValidValues(this AirmenFscEntry entry)
         {
             return string.Format(@"            new CFNameValidValue(""{0}"","""", CFNameValidValueType.Text, 250),
@@ -121,18 +289,6 @@ namespace AirmenFSCTableGenerator
                 new CFNameValidValue(""{3}"", """", CFNameValidValueType.Text, 10),
 
             ", entry.FscProvCommentsCtfn, entry.FscCdNcdCtfn, entry.FscWaiverCtfn, entry.FscIcd10Ctfn);
-        }
-
-
-
-        internal static string ToStringResponseReview(this AirmenFscEntry entry)
-        {
-            return string.Format(@"", entry.SffpCtfn);
-        }
-
-        internal static string ToStringAHLTA(this AirmenFscEntry entry)
-        {
-            return string.Format(@"", entry.SffpCtfn);
         }
     }
 }
