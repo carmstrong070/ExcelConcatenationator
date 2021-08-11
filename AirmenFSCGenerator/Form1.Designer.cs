@@ -37,6 +37,7 @@ namespace AirmenFSCGenerator
             this.btn_GenerateResponseReview = new System.Windows.Forms.Button();
             this.btn_GenerateAHLTA = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btn_GenerateValidation = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_GenerateApplyValues
@@ -108,18 +109,29 @@ namespace AirmenFSCGenerator
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(487, 202);
-            this.button1.Name = "btn_GenerateValidValues";
+            this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(167, 23);
             this.button1.TabIndex = 12;
             this.button1.Text = "Generate Valid Values";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btn_GenerateValidValues_Click);
             // 
+            // btn_GenerateValidation
+            // 
+            this.btn_GenerateValidation.Location = new System.Drawing.Point(487, 232);
+            this.btn_GenerateValidation.Name = "btn_GenerateValidation";
+            this.btn_GenerateValidation.Size = new System.Drawing.Size(167, 23);
+            this.btn_GenerateValidation.TabIndex = 13;
+            this.btn_GenerateValidation.Text = "Generate Validation";
+            this.btn_GenerateValidation.UseVisualStyleBackColor = true;
+            this.btn_GenerateValidation.Click += new System.EventHandler(this.btn_GenerateValidation_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_GenerateValidation);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_GenerateAHLTA);
             this.Controls.Add(this.btn_GenerateResponseReview);
@@ -145,6 +157,7 @@ namespace AirmenFSCGenerator
         private System.Windows.Forms.Button btn_GenerateResponseReview;
         private System.Windows.Forms.Button btn_GenerateAHLTA;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_GenerateValidation;
     }
 }
 

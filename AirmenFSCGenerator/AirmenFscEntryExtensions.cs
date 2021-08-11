@@ -11,7 +11,7 @@ namespace AirmenFSCGenerator
     {
         internal static string ToStringHtml(this AirmenFscEntry entry)
         {
-            return string.Format(@"                             <tr id=""row{6}"" runat=""server"" class=""hiddenQuestion"">                                  
+            return string.Format(@"                                <tr id=""row{6}"" runat=""server"" class=""hiddenQuestion"">                                  
                                     <td>              
                                         <span>SFFP {0}</span>                               
                                     </td>
@@ -22,13 +22,16 @@ namespace AirmenFSCGenerator
                                     </td>
                                     <td>
                                         <span class=""textCounter width-large"">
+                                            <asp:CustomValidator ID=""cVal_{2}"" Enabled=""false"" Text=""*required"" ValidationGroup=""{2}"" ClientValidationFunction=""Validate_{2}"" EnableClientScript=""true"" runat=""server"" Display=""Dynamic"" CssClass=""error"" ></asp:CustomValidator>
+                                            <br />
                                             <PTCEnhanced:TextboxEnhanced ID=""txt_{2}"" CrossTabFname=""{2}"" TextMode=""Multiline"" MaxLength=""250"" TabIndex=""0"" runat=""server"" isDirty=""false""></PTCEnhanced:TextboxEnhanced> 
                                         </span>
                                     </td>
                                     <td>
-                                        <PTCEnhanced:DropDownListEnhanced ID=""drplst_{3}"" CrossTabFname=""{3}"" TextMode=""SingleLine"" MaxLength=""3"" TabIndex=""0"" runat=""server"" isDirty=""false""></PTCEnhanced:DropDownListEnhanced>
+                                        <PTCEnhanced:DropDownListEnhanced ID=""drplst_{3}"" Enabled=""false"" CrossTabFname=""{3}"" TextMode=""SingleLine"" MaxLength=""3"" TabIndex=""0"" runat=""server"" isDirty=""false""></PTCEnhanced:DropDownListEnhanced>
                                     </td>
                                     <td>
+                                        <asp:CustomValidator ID=""cVal_{4}"" Enabled=""false"" Text=""*required"" ValidationGroup=""{4}"" ClientValidationFunction=""Validate_{4}"" EnableClientScript=""true"" runat=""server"" Display=""Dynamic"" CssClass=""error"" ></asp:CustomValidator>
                                         <PTCEnhanced:DropDownListEnhanced ID=""drplst_{4}"" CrossTabFname=""{4}"" TextMode=""SingleLine"" MaxLength=""3"" TabIndex=""0"" runat=""server"" isDirty=""false""></PTCEnhanced:DropDownListEnhanced>
                                     </td>
                                     <td>
@@ -218,12 +221,39 @@ namespace AirmenFSCGenerator
 
         internal static string ToStringValidValues(this AirmenFscEntry entry)
         {
-            return string.Format(@"            new CFNameValidValue(""{0}"","""", CFNameValidValueType.Text, 250),
-                new CFNameValidValue(""{1}"", """", CFNameValidValueType.Text, 3),
-                new CFNameValidValue(""{2}"", """", CFNameValidValueType.Text, 3),
+            return string.Format(@"                new CFNameValidValue(""{0}"","""", CFNameValidValueType.Text, 250),
+                new CFNameValidValue(""{1}"", ""CD"", CFNameValidValueType.DropList),
+                new CFNameValidValue(""{1}"", ""NCD"", CFNameValidValueType.DropList),
+                new CFNameValidValue(""{2}"", ""WR"", CFNameValidValueType.DropList),
+                new CFNameValidValue(""{2}"", ""WP"", CFNameValidValueType.DropList),
+                new CFNameValidValue(""{2}"", ""WG"", CFNameValidValueType.DropList),
+                new CFNameValidValue(""{2}"", ""WNR"", CFNameValidValueType.DropList),
+                new CFNameValidValue(""{2}"", ""Other"", CFNameValidValueType.DropList),
                 new CFNameValidValue(""{3}"", """", CFNameValidValueType.Text, 10),
-
             ", entry.FscProvCommentsCtfn, entry.FscCdNcdCtfn, entry.FscWaiverCtfn, entry.FscIcd10Ctfn);
+        }
+
+        internal static string ToStringValidation(this AirmenFscEntry entry)
+        {
+            return String.Format(@"        function Validate_{0}(sender, args) {{
+
+            if ( <%= IsHCP ? ""true"" : ""false""%> && document.getElementById(""txt_{0}"").value.length < 1) {{
+                    args.IsValid = false;
+            }}
+            else {{
+                args.IsValid = true;
+            }}
+        }}
+
+        function Validate_{1}(sender, args) {{
+
+            if ( <%= IsHCP ? ""true"" : ""false""%> && document.getElementById(""drplst_{2}"").value == ""CD"" && document.getElementById(""drplst_{1}"").value.length < 1) {{
+                args.IsValid = false;
+            }}
+            else {{
+                args.IsValid = true;
+            }}
+        }}", entry.FscProvCommentsCtfn, entry.FscWaiverCtfn, entry.FscCdNcdCtfn);
         }
     }
 }

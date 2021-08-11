@@ -46,7 +46,11 @@ namespace AirmenFSCGenerator
         }
         private void btn_GenerateValidValues_Click(object sender, EventArgs e)
         {
-            WriteGenerateValidValues(GetRows());
+            WriteValidValues(GetRows());
+        }
+        private void btn_GenerateValidation_Click(object sender, EventArgs e)
+        {
+            WriteValidationToFile(GetRows());
         }
 
         public List<AirmenFscEntry> GetRows()
@@ -132,9 +136,9 @@ namespace AirmenFSCGenerator
             }
         }
 
-        private void WriteGenerateValidValues(List<AirmenFscEntry> data)
+        private void WriteValidValues(List<AirmenFscEntry> data)
         {
-            using (var fileStream = new FileStream("C:\\Temp\\AirmenInitialControlStateGeneration.txt", FileMode.Append))
+            using (var fileStream = new FileStream("C:\\Temp\\AirmenValidValuesGeneration.txt", FileMode.Append))
             {
                 using (var strmWrtr = new StreamWriter(fileStream))
                 {
@@ -145,5 +149,20 @@ namespace AirmenFSCGenerator
                 }
             }
         }
+
+        private void WriteValidationToFile(List<AirmenFscEntry> data)
+        {
+            using (var fileStream = new FileStream("C:\\Temp\\AirmenValidationGeneration.txt", FileMode.Append))
+            {
+                using (var strmWrtr = new StreamWriter(fileStream))
+                {
+                    foreach (var item in data)
+                    {
+                        strmWrtr.WriteLine(item.ToStringValidation());
+                    }
+                }
+            }
+        }
+
     }
 }
