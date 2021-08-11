@@ -38,6 +38,8 @@ namespace AirmenFSCGenerator
             this.btn_GenerateAHLTA = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btn_GenerateValidation = new System.Windows.Forms.Button();
+            this.btn_GenerateAskedEngineMethod = new System.Windows.Forms.Button();
+            this.btn_GenerateAskedEngineRegistry = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_GenerateApplyValues
@@ -126,11 +128,33 @@ namespace AirmenFSCGenerator
             this.btn_GenerateValidation.UseVisualStyleBackColor = true;
             this.btn_GenerateValidation.Click += new System.EventHandler(this.btn_GenerateValidation_Click);
             // 
+            // btn_GenerateAskedEngineMethod
+            // 
+            this.btn_GenerateAskedEngineMethod.Location = new System.Drawing.Point(487, 262);
+            this.btn_GenerateAskedEngineMethod.Name = "btn_GenerateAskedEngineMethod";
+            this.btn_GenerateAskedEngineMethod.Size = new System.Drawing.Size(167, 36);
+            this.btn_GenerateAskedEngineMethod.TabIndex = 14;
+            this.btn_GenerateAskedEngineMethod.Text = "Generate Asked Engine (method)";
+            this.btn_GenerateAskedEngineMethod.UseVisualStyleBackColor = true;
+            this.btn_GenerateAskedEngineMethod.Click += new System.EventHandler(this.btn_GenerateAskedEngineMethod_Click);
+            // 
+            // btn_GenerateAskedEngineRegistry
+            // 
+            this.btn_GenerateAskedEngineRegistry.Location = new System.Drawing.Point(487, 304);
+            this.btn_GenerateAskedEngineRegistry.Name = "btn_GenerateAskedEngineRegistry";
+            this.btn_GenerateAskedEngineRegistry.Size = new System.Drawing.Size(167, 36);
+            this.btn_GenerateAskedEngineRegistry.TabIndex = 15;
+            this.btn_GenerateAskedEngineRegistry.Text = "Generate Asked Engine (registry)";
+            this.btn_GenerateAskedEngineRegistry.UseVisualStyleBackColor = true;
+            this.btn_GenerateAskedEngineRegistry.Click += new System.EventHandler(this.btn_GenerateAskedEngineRegistry_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_GenerateAskedEngineRegistry);
+            this.Controls.Add(this.btn_GenerateAskedEngineMethod);
             this.Controls.Add(this.btn_GenerateValidation);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_GenerateAHLTA);
@@ -158,6 +182,8 @@ namespace AirmenFSCGenerator
         private System.Windows.Forms.Button btn_GenerateAHLTA;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btn_GenerateValidation;
+        private System.Windows.Forms.Button btn_GenerateAskedEngineMethod;
+        private System.Windows.Forms.Button btn_GenerateAskedEngineRegistry;
     }
 }
 

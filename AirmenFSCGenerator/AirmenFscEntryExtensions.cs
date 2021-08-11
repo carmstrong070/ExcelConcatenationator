@@ -255,5 +255,45 @@ namespace AirmenFSCGenerator
             }}
         }}", entry.FscProvCommentsCtfn, entry.FscWaiverCtfn, entry.FscCdNcdCtfn);
         }
+
+        internal static string ToStringAskedEngineMethod(this AirmenFscEntry entry)
+        {
+            return string.Format(@"        internal static Tuple<string[], string[]> {0}_SetAskedStateForChildren(Dictionary<string, string> savedValues)
+        {{
+            //Get the saved value if it exists, otherwise value is blank
+            var savedValue = savedValues.ContainsKey(""{0}"") ? savedValues[""{0}""] : """";
+
+            //Asked/Not Asked Lists
+            List<string> askedCtfns = new List<string>();
+            List<string> notAskedCtfns = new List<string>();
+
+            //Determine if the ""{0}"" is answered as ""Y"" and sets Asked State
+            if (savedValue == ""Y"")
+            {{
+                askedCtfns.Add(""{1}"");
+                askedCtfns.Add(""{2}"");
+                askedCtfns.Add(""{3}"");
+                askedCtfns.Add(""{4}"");
+                askedCtfns.Add(""{5}"");
+            }}
+            else
+            {{
+                notAskedCtfns.Add(""{1}"");
+                notAskedCtfns.Add(""{2}"");
+                notAskedCtfns.Add(""{3}"");
+                notAskedCtfns.Add(""{4}"");
+                notAskedCtfns.Add(""{5}"");
+            }}
+
+            //Return the Asked lists as string arrays
+            return new Tuple<string[], string[]>(askedCtfns.ToArray(), notAskedCtfns.ToArray());
+        }}
+            ", entry.SffpCtfn, entry.SffpTextCtfn, entry.FscProvCommentsCtfn, entry.FscCdNcdCtfn, entry.FscWaiverCtfn, entry.FscIcd10Ctfn);
+        }
+
+        internal static string ToStringAskedEngineRegistry(this AirmenFscEntry entry)
+        {
+            return string.Format(@"            {{ ""{0}"", AskedCalculators.{0}_SetAskedStateForChildren }},", entry.SffpCtfn);
+        }
     }
 }

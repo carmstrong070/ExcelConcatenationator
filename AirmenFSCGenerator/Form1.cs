@@ -19,27 +19,22 @@ namespace AirmenFSCGenerator
         {
             InitializeComponent();
         }
-
         private void btn_GenerateHtml_Click(object sender, EventArgs e)
         {
             WriteHTMLToFile(GetRows());
         }
-
         private void btn_GenerateCodeBehindBehavior_Click(object sender, EventArgs e)
         {
             WriteInitialControlStateToFile(GetRows());
         }
-
         private void btn_GenerateApplyValues_Click(object sender, EventArgs e)
         {
             WriteInitialControlStateToFile(GetRows());
         }
-
         private void btn_GenerateResponseReview_Click(object sender, EventArgs e)
         {
             WriteResponseReviewToFile(GetRows());
         }
-
         private void btn_GenerateAHLTA_Click(object sender, EventArgs e)
         {
             WriteAHLTAToFile(GetRows());
@@ -51,6 +46,14 @@ namespace AirmenFSCGenerator
         private void btn_GenerateValidation_Click(object sender, EventArgs e)
         {
             WriteValidationToFile(GetRows());
+        }
+        private void btn_GenerateAskedEngineMethod_Click(object sender, EventArgs e)
+        {
+            WriteAskedEngineMethodsToFile(GetRows());
+        }
+        private void btn_GenerateAskedEngineRegistry_Click(object sender, EventArgs e)
+        {
+            WriteAskedEngineRegistryToFile(GetRows());
         }
 
         public List<AirmenFscEntry> GetRows()
@@ -164,5 +167,32 @@ namespace AirmenFSCGenerator
             }
         }
 
+        private void WriteAskedEngineMethodsToFile(List<AirmenFscEntry> data)
+        {
+            using (var fileStream = new FileStream("C:\\Temp\\AirmenAskedEngineMethodsGeneration.txt", FileMode.Append))
+            {
+                using (var strmWrtr = new StreamWriter(fileStream))
+                {
+                    foreach (var item in data)
+                    {
+                        strmWrtr.WriteLine(item.ToStringAskedEngineMethod());
+                    }
+                }
+            }
+        }
+
+        private void WriteAskedEngineRegistryToFile(List<AirmenFscEntry> data)
+        {
+            using (var fileStream = new FileStream("C:\\Temp\\AirmenAskedEngineRegistryGeneration.txt", FileMode.Append))
+            {
+                using (var strmWrtr = new StreamWriter(fileStream))
+                {
+                    foreach (var item in data)
+                    {
+                        strmWrtr.WriteLine(item.ToStringAskedEngineRegistry());
+                    }
+                }
+            }
+        }
     }
 }
