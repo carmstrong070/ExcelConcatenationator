@@ -31,6 +31,7 @@
             this.txt_PathToExcel = new System.Windows.Forms.TextBox();
             this.btn_Generate = new System.Windows.Forms.Button();
             this.txt_JsonOutput = new System.Windows.Forms.TextBox();
+            this.btn_GenerateFromValidValues = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txt_PathToExcel
@@ -59,11 +60,22 @@
             this.txt_JsonOutput.Size = new System.Drawing.Size(412, 214);
             this.txt_JsonOutput.TabIndex = 2;
             // 
+            // btn_GenerateFromValidValues
+            // 
+            this.btn_GenerateFromValidValues.Location = new System.Drawing.Point(467, 62);
+            this.btn_GenerateFromValidValues.Name = "btn_GenerateFromValidValues";
+            this.btn_GenerateFromValidValues.Size = new System.Drawing.Size(75, 47);
+            this.btn_GenerateFromValidValues.TabIndex = 3;
+            this.btn_GenerateFromValidValues.Text = "Generate from Valid Values";
+            this.btn_GenerateFromValidValues.UseVisualStyleBackColor = true;
+            this.btn_GenerateFromValidValues.Click += new System.EventHandler(this.btn_GenerateFromValidValues_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(571, 300);
+            this.Controls.Add(this.btn_GenerateFromValidValues);
             this.Controls.Add(this.txt_JsonOutput);
             this.Controls.Add(this.btn_Generate);
             this.Controls.Add(this.txt_PathToExcel);
@@ -79,6 +91,7 @@
         private System.Windows.Forms.TextBox txt_PathToExcel;
         private System.Windows.Forms.Button btn_Generate;
         private System.Windows.Forms.TextBox txt_JsonOutput;
+        private System.Windows.Forms.Button btn_GenerateFromValidValues;
     }
 }
 
