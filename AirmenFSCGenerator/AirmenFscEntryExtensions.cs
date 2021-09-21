@@ -16,8 +16,8 @@ namespace AirmenFSCGenerator
                                         <span>SFFP {0}</span>                               
                                     </td>
                                     <td>
-                                        <span class=""textCounter width-large"">
-                                            <PTCEnhanced:TextboxEnhanced ID=""txt_{1}"" CrossTabFname=""{1}"" TextMode=""Multiline"" MaxLength=""250"" TabIndex=""0"" runat=""server"" isDirty=""false"" disabled=""disabled""></PTCEnhanced:TextboxEnhanced> 
+                                        <span id=""lbl_{1}"" runat=""server"" class=""textCounter width-large"">
+                                            
                                         </span>
                                     </td>
                                     <td>
